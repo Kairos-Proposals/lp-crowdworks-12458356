@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos ご提案 | ヘッドレスCMS構築サポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B2A3A;
+    --green:#2E7D6B;
+    --mustard:#F2C879;
+    --ivory:#EDEAE0;
+    --coral:#FF6B4A;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--ivory);
+    color:var(--navy);
+    line-height:1.8;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk','Noto Sans JP',sans-serif;
+    letter-spacing:0.02em;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;}
+  section{
+    padding:6rem 6vw;
+    position:relative;
+  }
+  @media (max-width:768px){
+    section{padding:4rem 6vw;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    background:var(--navy);
+    color:var(--ivory);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    padding:6vw;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-10%;
+    right:-10%;
+    width:60vw;
+    height:60vw;
+    max-width:600px;
+    max-height:600px;
+    border:1px solid rgba(242,200,121,0.15);
+    border-radius:50%;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-15%;
+    left:-10%;
+    width:40vw;
+    height:40vw;
+    max-width:400px;
+    max-height:400px;
+    border:1px solid rgba(46,125,107,0.25);
+    border-radius:50%;
+  }
+  .tag{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.15em;
+    color:var(--mustard);
+    border:1px solid rgba(242,200,121,0.4);
+    padding:0.4rem 0.9rem;
+    border-radius:2px;
+    margin-bottom:2rem;
+    width:fit-content;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,5.5vw,4rem);
+    font-weight:700;
+    max-width:14ch;
+    line-height:1.3;
+    margin-bottom:1.5rem;
+    position:relative;
+    z-index:2;
+  }
+  .hero h1 span{color:var(--mustard);}
+  .hero p.lead{
+    font-size:1.05rem;
+    max-width:44ch;
+    color:rgba(237,234,224,0.85);
+    position:relative;
+    z-index:2;
+    margin-bottom:3rem;
+  }
+  .split-diagram{
+    display:flex;
+    align-items:center;
+    gap:0;
+    position:relative;
+    z-index:2;
+    margin-top:1rem;
+    flex-wrap:wrap;
+  }
+  .split-block{
+    width:120px;
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    text-align:center;
+    letter-spacing:0.05em;
+  }
+  .block-head{
+    background:var(--mustard);
+    color:var(--navy);
+    border-radius:4px 4px 0 0;
+    clip-path:polygon(0 100%, 0 20%, 100% 20%, 100% 100%);
+  }
+  .block-body{
+    background:var(--green);
+    color:var(--ivory);
+    border-radius:0 0 4px 4px;
+  }
+  .connector{
+    width:60px;
+    height:2px;
+    background-image:repeating-linear-gradient(to right, var(--coral) 0 6px, transparent 6px 12px);
+    position:relative;
+  }
+  .connector::before,.connector::after{
+    content:"";
+    position:absolute;
+    top:-3px;
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--coral);
+  }
+  .connector::before{left:0;}
+  .connector::after{right:0;}
+  @media (max-width:600px){
+    .connector{width:24px;transform:rotate(90deg);margin:0.5rem auto;}
+    .split-diagram{flex-direction:column;}
+  }
+
+  /* ---------- UNDERSTANDING ---------- */
+  .understand{
+    background:var(--white);
+  }
+  .understand .inner{
+    max-width:820px;
+    margin:0 auto;
+  }
+  .understand .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    color:var(--green);
+    letter-spacing:0.15em;
+    margin-bottom:1rem;
+  }
+  .understand h2{
+    font-size:clamp(1.6rem,3.5vw,2.2rem);
+    margin-bottom:1.8rem;
+    line-height:1.5;
+  }
+  .understand p{
+    color:#333;
+    font-size:0.98rem;
+    max-width:60ch;
+  }
+  .quote-box{
+    margin-top:2.5rem;
+    padding:1.5rem 1.8rem;
+    border-left:3px solid var(--coral);
+    background:var(--ivory);
+    font-size:0.95rem;
+    color:var(--navy);
+  }
+
+  /* ---------- VALUE ---------- */
+  .value{
+    background:var(--navy);
+    color:var(--ivory);
+  }
+  .value > .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    color:var(--mustard);
+    letter-spacing:0.15em;
+    margin-bottom:1rem;
+    text-align:center;
+  }
+  .value h2{
+    text-align:center;
+    font-size:clamp(1.6rem,3.5vw,2.2rem);
+    margin-bottom:3.5rem;
+  }
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:1.5rem;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(242,200,121,0.2);
+    border-radius:6px;
+    padding:2rem 1.6rem;
+    transition:transform .25s, border-color .25s;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    border-color:var(--mustard);
+  }
+  .card .num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--mustard);
+    font-size:0.8rem;
+    margin-bottom:1rem;
+  }
+  .card h3{
+    font-size:1.05rem;
+    margin-bottom:0.8rem;
+    color:var(--white);
+  }
+  .card p{
+    font-size:0.88rem;
+    color:rgba(237,234,224,0.75);
+  }
+
+  /* ---------- FLOW ---------- */
+  .flow{
+    background:var(--ivory);
+  }
+  .flow .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    color:var(--green);
+    letter-spacing:0.15em;
+    margin-bottom:1rem;
+  }
+  .flow h2{
+    font-size:clamp(1.6rem,3.5vw,2.2rem);
+    margin-bottom:3rem;
+  }
+  .timeline{
+    max-width:760px;
+    margin:0 auto;
+    position:relative;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    top:0;bottom:0;left:24px;
+    width:2px;
+    background:repeating-linear-gradient(to bottom, var(--green) 0 6px, transparent 6px 12px);
+  }
+  .step{
+    position:relative;
+    padding-left:70px;
+    margin-bottom:2.6rem;
+  }
+  .step:last-child{margin-bottom:0;}
+  .step .dot{
+    position:absolute;
+    left:12px;
+    top:2px;
+    width:26px;height:26px;
+    background:var(--coral);
+    border-radius:50%;
+    color:var(--white);
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .step h3{
+    font-size:1.05rem;
+    margin-bottom:0.4rem;
+  }
+  .step p{
+    font-size:0.9rem;
+    color:#333;
+    max-width:52ch;
+  }
+  .step .time{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    color:var(--green);
+    display:block;
+    margin-bottom:0.3rem;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    background:var(--navy);
+    color:var(--ivory);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .closing::before{
+    content:"";
+    position:absolute;
+    width:500px;height:500px;
+    background:radial-gradient(circle, rgba(242,200,121,0.12), transparent 70%);
+    top:-100px;left:50%;
+    transform:translateX(-50%);
+  }
+  .closing h2{
+    font-size:clamp(1.6rem,4vw,2.4rem);
+    margin-bottom:1.2rem;
+    position:relative;
+    z-index:2;
+  }
+  .closing p{
+    color:rgba(237,234,224,0.8);
+    max-width:50ch;
+    margin:0 auto 2.5rem;
+    position:relative;
+    z-index:2;
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--coral);
+    color:var(--white);
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    padding:1rem 2.4rem;
+    border-radius:3px;
+    text-decoration:none;
+    letter-spacing:0.03em;
+    position:relative;
+    z-index:2;
+    transition:transform .2s, box-shadow .2s;
+    box-shadow:0 6px 18px rgba(255,107,74,0.35);
+  }
+  .cta-btn:hover{transform:translateY(-3px);}
+  .meta-row{
+    margin-top:3rem;
+    display:flex;
+    justify-content:center;
+    gap:2.5rem;
+    flex-wrap:wrap;
+    position:relative;
+    z-index:2;
+  }
+  .meta-item{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--mustard);
+    border:1px solid rgba(242,200,121,0.3);
+    padding:0.5rem 1rem;
+    border-radius:3px;
+  }
+  footer{
+    background:#12202d;
+    color:rgba(237,234,224,0.5);
+    text-align:center;
+    padding:2rem;
+    font-size:0.78rem;
+    font-family:'JetBrains Mono',monospace;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="tag mono">PROPOSAL FROM KAIROS</div>
+  <h1>コンテンツと表示を、<span>正しく分離する。</span></h1>
+  <p class="lead">microCMSでのサイト構築、ひとまず"使い方"から。ヘッドレスの本質を、必要な分だけ丁寧にお渡しします。</p>
+  <div class="split-diagram">
+    <div class="split-block block-head">HEAD<br>表示・デザイン</div>
+    <div class="connector"></div>
+    <div class="split-block block-body">BODY<br>microCMS</div>
+  </div>
+</section>
+
+<section class="understand">
+  <div class="inner">
+    <div class="label mono">01 / UNDERSTANDING</div>
+    <h2>「まずは動かせるようになりたい」<br>その一歩を、確実な理解に変えます。</h2>
+    <p>今回のご依頼は、正式導入前の"サポートフェーズ"。既存テンプレートを使ったmicroCMS構築において、操作方法・カテゴリ設計・機能の使い分けを整理し、将来デザイン刷新を依頼する際にも迷わない土台を作ることが本質だと理解しています。予算・スケジュールともに小さく始めたいというご要望にも、身軽な体制で応じます。</p>
+    <div class="quote-box mono">
+      "サポートのみでOK。まずは使い方と選択肢を知りたい。"<br>— ご依頼内容より
+    </div>
+  </div>
+</section>
+
+<section class="value">
+  <div class="label mono">02 / WHAT WE OFFER</div>
+  <h2>Kairosが提供できること</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="num mono">01</div>
+      <h3>microCMS操作レクチャー</h3>
+      <p>画面共有でコンテンツ管理・API設定・プレビュー確認まで、実際の操作を一緒に進めながら解説します。</p>
+    </div>
+    <div class="card">
+      <div class="num mono">02</div>
+      <h3>カテゴリ・構造設計</h3>
+      <p>コンテンツ量や更新頻度に合わせ、カテゴリ・タグ・カスタムフィールドの最適な設計をご提案します。</p>
+    </div>
+    <div class="card">
+      <div class="num mono">03</div>
+      <h3>機能の棚卸しと選定</h3>
+      <p>webhook・画像最適化・多言語対応など、必要な機能とそうでない機能を切り分けて整理します。</p>
+    </div>
+    <div class="card">
+      <div class="num mono">04</div>
+      <h3>他ヘッドレスCMSとの比較</h3>
+      <p>コスト重視の代替サービス（無料枠・低価格帯）も含め、選択肢を客観的に比較してお伝えします。</p>
+    </div>
+    <div class="card">
+      <div class="num mono">05</div>
+      <h3>Chatworkでの機動的なやりとり</h3>
+      <p>チャットでの質問対応を基本に、必要に応じて画面共有も。スピード感を大切にします。</p>
+    </div>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="label mono">03 / FLOW</div>
+  <h2>進め方のイメージ</h2>
+  <div class="timeline">
+    <div class="step">
+      <div class="dot mono">1</div>
+      <span class="time mono">DAY 1</span>
+      <h3>ヒアリング・現状確認</h3>
+      <p>既存テンプレート・現在のCMS設定状況、実現したい運用イメージをChatworkで共有いただきます。</p>
+    </div>
+    <div class="step">
+      <div class="dot mono">2</div>
+      <span class="time mono">DAY 2-3</span>
+      <h3>設計案・比較資料の提示</h3>
+      <p>カテゴリ構成案、必要機能の整理、他サービスとの比較を簡潔にまとめてお渡しします。</p>
+    </div>
+    <div class="step">
+      <div class="dot mono">3</div>
+      <span class="time mono">DAY 3-4</span>
+      <h3>操作レクチャー（画面共有）</h3>
+      <p>実際の管理画面を操作しながら、迷いなく更新できる状態までサポートします。</p>
+    </div>
+    <div class="step">
+      <div class="dot mono">4</div>
+      <span class="time mono">継続</span>
+      <h3>継続フォロー</h3>
+      <p>正式導入・デザイン刷新のフェーズに進む際は、継続的なサポート体制もご用意できます。</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <h2>まずは、気軽に話しましょう。</h2>
+  <p>自己紹介・実績・ポートフォリオをChatworkにてお送りします。小さな一歩からで構いません、まずはご相談ください。</p>
+  <a href="#" class="cta-btn">Chatworkで相談する</a>
+  <div class="meta-row">
+    <div class="meta-item mono">BUDGET ¥5,500</div>
+    <div class="meta-item mono">TOOL: microCMS</div>
+    <div class="meta-item mono">継続対応 可</div>
+  </div>
+</section>
+
+<footer>
+  KAIROS — Web制作・システム開発チーム / Proposal for ks_wtra
+</footer>
+
+</body>
+</html>
